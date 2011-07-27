@@ -1,12 +1,5 @@
 import junit.framework.TestCase;
 
-/*
- * まず、5ドルを2倍すると10ドルになるというストーリーがある
- * ・クラスがない→作る
- * ・関数や変数がない→実装する
- * ・テストは通るが失敗する（10にならない）→とりあえずグリーンにするためにどっかで10をこじつける
- * ・
- */
 public class DollarTest extends TestCase {
 	public void testTimes() {
 		Dollar dollar = new Dollar(5);		//5ドルを作る
