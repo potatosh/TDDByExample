@@ -11,4 +11,10 @@ public class Dollar {
 		return new Dollar(amount * mul);
 	}
 
+	@Override
+	public boolean equals(Object object) {
+		Dollar target = (Dollar)object;
+		return this.amount == target.amount;
+	}
+
 }
