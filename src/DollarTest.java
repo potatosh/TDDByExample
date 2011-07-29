@@ -4,10 +4,8 @@ public class DollarTest extends TestCase {
 	//$5に2をかけたら10に、3をかけたら15になる
 	public void testTimes() {
 		Dollar dollar = new Dollar(5);		//5ドルを作る
-		Dollar product = dollar.times(2);	//2倍する
-		assertEquals(10, product.amount);	//値を取り出したら10になってるはず
-		product = dollar.times(3);		//3倍する
-		assertEquals(15, product.amount);	//値を取り出したら15になってるはず
+		assertEquals(new Dollar(10), dollar.times(2));	//5ドルを2倍すれば10ドルのはず
+		assertEquals(new Dollar(15), dollar.times(3));	//5ドルを3倍すれば15ドルのはず
 	}
 
 	//$5と別の$5は等しい（バリューオブジェクト）
