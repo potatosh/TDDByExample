@@ -1,19 +1,19 @@
 
-public class Dollar {
+public class Franc {
 
 	private int amount;
 
-	public Dollar(int amount) {
+	public Franc(int amount) {
 		this.amount = amount;
 	}
 
-	public Dollar times(int mul) {
-		return new Dollar(amount * mul);
+	public Franc times(int mul) {
+		return new Franc(amount * mul);
 	}
 
 	@Override
 	public boolean equals(Object object) {
-		Dollar target = (Dollar)object;
+		Franc target = (Franc)object;
 		return this.amount == target.amount;
 	}
 
