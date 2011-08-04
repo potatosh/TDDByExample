@@ -1,7 +1,5 @@
 
-public class Franc {
-
-	private int amount;
+public class Franc extends Money{
 
 	public Franc(int amount) {
 		this.amount = amount;
@@ -9,12 +7,6 @@ public class Franc {
 
 	public Franc times(int mul) {
 		return new Franc(amount * mul);
-	}
-
-	@Override
-	public boolean equals(Object object) {
-		Franc target = (Franc)object;
-		return this.amount == target.amount;
 	}
 
 }
