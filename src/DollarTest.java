@@ -19,5 +19,7 @@ public class DollarTest extends TestCase {
 	public void testEquality() {
 		assertTrue(new Dollar(5).equals(new Dollar(5)));	//$5と$5は等しい
 		assertFalse(new Dollar(5).equals(new Dollar(6)));	//$5と$6は等しくいない
+		assertTrue(new Franc(5).equals(new Franc(5)));	//$5と$5は等しい
+		assertFalse(new Franc(5).equals(new Franc(6)));	//$5と$6は等しくいない
 	}
 }

@@ -1,7 +1,5 @@
 
-public class Dollar {
-
-	private int amount;
+public class Dollar extends Money {
 
 	public Dollar(int amount) {
 		this.amount = amount;
@@ -9,12 +7,6 @@ public class Dollar {
 
 	public Dollar times(int mul) {
 		return new Dollar(amount * mul);
-	}
-
-	@Override
-	public boolean equals(Object object) {
-		Dollar target = (Dollar)object;
-		return this.amount == target.amount;
 	}
 
 }
