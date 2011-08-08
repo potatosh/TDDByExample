@@ -23,4 +23,9 @@ public class DollarTest extends TestCase {
 		assertFalse(Money.franc(5).equals(Money.franc(6)));		//5フランと6フランは等しくない
 		assertFalse(Money.dollar(5).equals(Money.franc(5)));
 	}
+
+	public void testCurrency() {
+		assertEquals("USD", Money.dollar(1).currency());	//$1の通貨の文字列表現は"USD"である
+		assertEquals("CHF", Money.franc(1).currency());		//1フランの通貨の文字列表現は"CHF"である
+	}
 }

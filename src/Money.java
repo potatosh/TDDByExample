@@ -2,6 +2,12 @@
 abstract class Money {
 
 	protected int amount;	//サブクラスから変数が見えるようにprotectedにする
+	protected String currency;
+
+	Money(int amount, String currency) {
+		this.amount = amount;
+		this.currency = currency;
+	}
 
 	@Override
 	public boolean equals(Object object) {
@@ -12,14 +18,17 @@ abstract class Money {
 
 	static Money dollar(int amount) {
 		// TODO 自動生成されたメソッド・スタブ
-		return new Dollar(amount);
+		return new Dollar(amount, "USD");
 	}
 
 	abstract Money times(int multiplier);
 
 	static Money franc(int amount) {
 		// TODO 自動生成されたメソッド・スタブ
-		return new Franc(amount);
+		return new Franc(amount, "CHF");
 	}
 
+	String currency() {
+		return currency;
+	}
 }
