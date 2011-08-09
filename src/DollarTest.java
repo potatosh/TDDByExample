@@ -28,4 +28,8 @@ public class DollarTest extends TestCase {
 		assertEquals("USD", Money.dollar(1).currency());	//$1の通貨の文字列表現は"USD"である
 		assertEquals("CHF", Money.franc(1).currency());		//1フランの通貨の文字列表現は"CHF"である
 	}
+
+	public void testDifferentClassEquality() {
+		assertTrue(new Money(10, "CHF").equals(new Franc(10, "CHF")));	//Money型の10フランはFranc型の10フランと等しい
+	}
 }

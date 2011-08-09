@@ -1,5 +1,5 @@
 
-abstract class Money {
+class Money {
 
 	protected int amount;	//サブクラスから変数が見えるようにprotectedにする
 	protected String currency;
@@ -13,7 +13,7 @@ abstract class Money {
 	public boolean equals(Object object) {
 		Money money = (Money)object;
 		//amountが等しくて且つクラス名が等しければtrue
-		return this.amount == money.amount && getClass().equals(money.getClass());
+		return this.amount == money.amount && currency().equals(money.currency());
 	}
 
 	static Money dollar(int amount) {
@@ -21,7 +21,9 @@ abstract class Money {
 		return new Dollar(amount, "USD");
 	}
 
-	abstract Money times(int multiplier);
+	Money times(int mul) {
+		return new Money(amount * mul, currency);
+	}
 
 	static Money franc(int amount) {
 		// TODO 自動生成されたメソッド・スタブ
@@ -30,5 +32,9 @@ abstract class Money {
 
 	String currency() {
 		return currency;
+	}
+
+	public String toString() {
+		return amount + " " + currency;
 	}
 }
