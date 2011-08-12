@@ -18,7 +18,7 @@ class Money {
 
 	static Money dollar(int amount) {
 		// TODO 自動生成されたメソッド・スタブ
-		return new Dollar(amount, "USD");
+		return new Money(amount, "USD");
 	}
 
 	Money times(int mul) {
@@ -27,7 +27,7 @@ class Money {
 
 	static Money franc(int amount) {
 		// TODO 自動生成されたメソッド・スタブ
-		return new Franc(amount, "CHF");
+		return new Money(amount, "CHF");
 	}
 
 	String currency() {
