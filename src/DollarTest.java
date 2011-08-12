@@ -19,4 +19,12 @@ public class DollarTest extends TestCase {
 		assertEquals("USD", Money.dollar(1).currency());	//$1の通貨の文字列表現は"USD"である
 		assertEquals("CHF", Money.franc(1).currency());		//1フランの通貨の文字列表現は"CHF"である
 	}
+
+	public void testSimpleAddition() {
+		Money five = Money.dollar(5);			//5ドルを作る
+		Expression sum = five.plus(five);		//式$5+$5を作る
+		Bank bank = new Bank();				//銀行を作る
+		Money reduced = bank.reduce(sum, "USD");	//銀行にsumを単位USDで計算してもらうと計算結果($10)のMoneyが返ってくる
+		assertEquals (Money.dollar(10), reduced);	//reducedは$10である
+	}
 }

@@ -1,5 +1,5 @@
 
-class Money {
+class Money implements Expression{
 
 	protected int amount;	//サブクラスから変数が見えるようにprotectedにする
 	protected String currency;
@@ -17,7 +17,6 @@ class Money {
 	}
 
 	static Money dollar(int amount) {
-		// TODO 自動生成されたメソッド・スタブ
 		return new Money(amount, "USD");
 	}
 
@@ -26,7 +25,6 @@ class Money {
 	}
 
 	static Money franc(int amount) {
-		// TODO 自動生成されたメソッド・スタブ
 		return new Money(amount, "CHF");
 	}
 
@@ -36,5 +34,9 @@ class Money {
 
 	public String toString() {
 		return amount + " " + currency;
+	}
+
+	Expression plus(Money addend) {
+		return new Money(amount + addend.amount, currency);
 	}
 }
