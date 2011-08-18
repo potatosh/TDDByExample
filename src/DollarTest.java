@@ -27,4 +27,25 @@ public class DollarTest extends TestCase {
 		Money reduced = bank.reduce(sum, "USD");	//銀行にsumを単位USDで計算してもらうと計算結果($10)のMoneyが返ってくる
 		assertEquals (Money.dollar(10), reduced);	//reducedは$10である
 	}
+
+	public void testPlusReturnsSum() {
+		Money five = Money.dollar(5);			//5ドルを作る
+		Expression result = five.plus(five);		//式$5+$5を作る(Sumが返ってくる)
+		Sum sum = (Sum) result;				//Sumにキャストする
+		assertEquals(five, sum.augend);			//Sumインスタンスとしてaugendと
+		assertEquals(five, sum.addend);			//addendパラメータを参照できる
+	}
+
+	public void testReduceSum() {
+		Expression sum = new Sum(Money.dollar(3), Money.dollar(4));	//式$3+$4を作る
+		Bank bank = new Bank();						//銀行を作る
+		Money result = bank.reduce(sum, "USD");				//作った式を通貨USDで計算する
+		assertEquals(Money.dollar(7), result);				//計算結果は$7である
+	}
+
+	public void testReduceMoney() {
+		Bank bank = new Bank();					//銀行を作る
+		Money result = bank.reduce(Money.dollar(1), "USD");	//$1をUSDに変換
+		assertEquals(Money.dollar(1), result);			//結果は$1である
+	}
 }

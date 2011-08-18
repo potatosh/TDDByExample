@@ -1,8 +1,8 @@
 
 class Bank {
 
-	Money reduce(Expression soruce, String to) {
-		return Money.dollar(10);
+	Money reduce(Expression source, String to) {
+		return source.reduce(to);
 	}
 
 }
