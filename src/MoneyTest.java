@@ -63,4 +63,13 @@ public class MoneyTest extends TestCase {
 	public void testIdentityRate() {
 		assertEquals(1, new Bank().rate("USD", "USD"));		//同じ通貨の変換レートは1である
 	}
+
+	public void testMixedAddittion() {
+		Expression fiveBucks = Money.dollar(5);				//$5を作る
+		Expression tenFrancs = Money.franc(10);				//10フランを作る
+		Bank bank = new Bank();						//銀行を作る
+		bank.addRate("CHF", "USD", 2);					//銀行にレートを追加する（フラン→ドルの場合2で割る）
+		Money result = bank.reduce(fiveBucks.plus(tenFrancs), "USD");	//fiveBucksとtenFrancsを足した結果を
+		assertEquals(Money.dollar(10), result);				//結果は$10である
+	}
 }
