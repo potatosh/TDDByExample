@@ -20,7 +20,7 @@ class Money implements Expression{
 		return new Money(amount, "USD");
 	}
 
-	Expression times(int mul) {
+	public Expression times(int mul) {
 		return new Money(amount * mul, currency);
 	}
 
@@ -37,6 +37,12 @@ class Money implements Expression{
 	}
 
 	public Expression plus(Expression addend) {
+		if(addend instanceof Money) {
+			Money money = (Money) addend;
+			if(this.currency.equals(money.currency)) {
+				return new Money(this.amount + money.amount, this.currency);
+			}
+		}
 		return new Sum(this, addend);
 	}
 

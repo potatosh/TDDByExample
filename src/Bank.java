@@ -10,7 +10,6 @@ class Bank {
 	}
 
 	void addRate(String from, String to, int rate) {
-		// TODO 自動生成されたメソッド・スタブ
 		rates.put(new Pair(from, to), rate);	//昔はnew Integer(rate)って書かないといけなかったけど時代は進化しました
 	}
 

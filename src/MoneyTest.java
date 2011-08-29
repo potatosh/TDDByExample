@@ -28,13 +28,14 @@ public class MoneyTest extends TestCase {
 		assertEquals (Money.dollar(10), reduced);	//reducedは$10である
 	}
 
-	public void testPlusReturnsSum() {
-		Money five = Money.dollar(5);			//5ドルを作る
-		Expression result = five.plus(five);		//式$5+$5を作る(Sumが返ってくる)
-		Sum sum = (Sum) result;				//Sumにキャストする
-		assertEquals(five, sum.augend);			//Sumインスタンスとしてaugendと
-		assertEquals(five, sum.addend);			//addendパラメータを参照できる
-	}
+	//16章で、同通貨のMoney同士で足し算を行うと、Moneyが返ってくるようにしたので、このテストは不要になる
+//	public void testPlusReturnsSum() {
+//		Money five = Money.dollar(5);			//5ドルを作る
+//		Expression result = five.plus(five);		//式$5+$5を作る(Sumが返ってくる)
+//		Sum sum = (Sum) result;				//Sumにキャストする
+//		assertEquals(five, sum.augend);			//Sumインスタンスとしてaugendと
+//		assertEquals(five, sum.addend);			//addendパラメータを参照できる
+//	}
 
 	public void testReduceSum() {
 		Expression sum = new Sum(Money.dollar(3), Money.dollar(4));	//式$3+$4を作る
@@ -69,7 +70,31 @@ public class MoneyTest extends TestCase {
 		Expression tenFrancs = Money.franc(10);				//10フランを作る
 		Bank bank = new Bank();						//銀行を作る
 		bank.addRate("CHF", "USD", 2);					//銀行にレートを追加する（フラン→ドルの場合2で割る）
-		Money result = bank.reduce(fiveBucks.plus(tenFrancs), "USD");	//fiveBucksとtenFrancsを足した結果を
+		Money result = bank.reduce(fiveBucks.plus(tenFrancs), "USD");	//fiveBucksとtenFrancsを足した結果を取得する
 		assertEquals(Money.dollar(10), result);				//結果は$10である
+	}
+
+	public void testSumPlusMoney() {
+		Expression fiveBucks = Money.dollar(5);				//$5を作る
+		Expression tenFrancs = Money.franc(10);				//10フランを作る
+		Bank bank = new Bank();						//銀行を作る
+		bank.addRate("CHF", "USD", 2);					//銀行にレートを追加する（フラン→ドルの場合2で割る）
+		Expression sum = new Sum(fiveBucks, tenFrancs).plus(fiveBucks);	//$5+10CHF+$5のSumを作る
+		Money result = bank.reduce(sum, "USD");				//Sumの結果を通貨USD取得する
+		assertEquals(Money.dollar(15), result);				//結果は$15である
+	}
+
+	public void testSumTimes() {
+		Expression fiveBucks = Money.dollar(5);				//$5を作る
+		Expression tenFrancs = Money.franc(10);				//10フランを作る
+		Bank bank = new Bank();						//銀行を作る
+		bank.addRate("CHF", "USD", 2);					//銀行にレートを追加する（フラン→ドルの場合2で割る）
+		Expression sum = new Sum(fiveBucks, tenFrancs).times(2);	//($5+10CHF)*2のSumを作る
+		Money result = bank.reduce(sum, "USD");				//Sumの結果を通貨USDで取得する
+		assertEquals(Money.dollar(20), result);				//結果は$20である
+	}
+
+	public void testPlusSameCurrencyReturnMoney() {
+		assertEquals(Money.dollar(1).plus(Money.dollar(1)), Money.dollar(2));	//同通貨のMoneyでplusを行うと、Moneyが返ってくる
 	}
 }
